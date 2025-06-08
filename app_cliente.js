@@ -207,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalAlertaFechar = document.getElementById('modal-alerta-fechar');
 
     // URLs DA API
-    const API_URL_BASE = 'http://localhost:8002/Api/';
+    const API_URL_BASE = 'dbem.infinityfreeapp.com/Api';
     const API_URL_SERVICOS = `${API_URL_BASE}/listar_servicos.php`;
     const API_URL_BARBEIROS = `${API_URL_BASE}/listar_barbeiros.php`;
     const API_URL_CONFIGURACAO_DIA = `${API_URL_BASE}/obter_config_funcionamento_para_cliente.php`;
