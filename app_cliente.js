@@ -49,10 +49,10 @@ document.addEventListener('DOMContentLoaded', function() {
     // VARIÁVEIS DE ESTADO E URLs
     // ===================================================================
     // ... (código existente sem alterações)
-    let agendamentoAtual = {};
-    let pollingIntervalo = null;
-    let agendamentoConsultado = null;
-    const API_URL_BASE = 'http://localhost:8002/Api/';
+   // let agendamentoAtual = {};
+    //let pollingIntervalo = null;
+    //let agendamentoConsultado = null;
+    //const API_URL_BASE = 'http://localhost:8002/Api/';
     // ... (resto das URLs)
 
 
