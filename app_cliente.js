@@ -46,6 +46,17 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // ===================================================================
+    // VARIÁVEIS DE ESTADO E URLs
+    // ===================================================================
+    // ... (código existente sem alterações)
+    let agendamentoAtual = {};
+    let pollingIntervalo = null;
+    let agendamentoConsultado = null;
+    const API_URL_BASE = 'http://localhost:8002/Api/';
+    // ... (resto das URLs)
+
+
+    // ===================================================================
     // FUNÇÕES DE LÓGICA (COM alert() SUBSTITUÍDO)
     // ===================================================================
     // ... (suas funções como salvarEstado, limparEstadoSessao, navegarPara, etc.)
@@ -196,7 +207,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const modalAlertaFechar = document.getElementById('modal-alerta-fechar');
 
     // URLs DA API
-    const API_URL_BASE = 'https://dbem.infinityfreeapp.com/Api/';
+    const API_URL_BASE = 'http://dbem.infinityfreeapp.com/Api/';
     const API_URL_SERVICOS = `${API_URL_BASE}/listar_servicos.php`;
     const API_URL_BARBEIROS = `${API_URL_BASE}/listar_barbeiros.php`;
     const API_URL_CONFIGURACAO_DIA = `${API_URL_BASE}/obter_config_funcionamento_para_cliente.php`;
