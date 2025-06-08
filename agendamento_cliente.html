@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Agendamento - Barbearia XYZ</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    <link rel="stylesheet" href="estilos_cliente.css">
+</head>
+<body>
+    <div id="app-container">
+        <header>
+            <h1><i class="fas fa-store"></i> Barbearia XYZ</h1>
+            <p>Agendamento Rápido e Moderno</p>
+        </header>
+
+        <main>
+            <section id="tela-inicial" class="tela ativa">
+                <h2>Bem-vindo!</h2>
+                <div class="opcoes-iniciais">
+                    <button id="btn-iniciar-novo-agendamento" class="btn-moderno btn-grande">
+                        <i class="fas fa-calendar-plus"></i> Novo Agendamento
+                    </button>
+                    <button id="btn-consultar-agendamento" class="btn-moderno btn-secundario btn-grande">
+                        <i class="fas fa-search"></i> Consultar Agendamento
+                    </button>
+                </div>
+            </section>
+
+            <section id="tela-consulta-status" class="tela">
+                <h2><i class="fas fa-search"></i> Consultar Status</h2>
+                <form id="form-consulta">
+                    <label for="telefone-consulta">Digite o telefone usado no agendamento:</label>
+                    <input type="tel" id="telefone-consulta" required placeholder="(XX) XXXXX-XXXX">
+                    
+                    <div id="mensagem-consulta-status" class="mensagem-status-cliente" style="display: none;"></div>
+
+                    <div class="actions-container">
+                        <button id="btn-voltar-para-inicial-1" type="button" class="btn-moderno btn-secundario">
+                            <i class="fas fa-arrow-left"></i> Voltar
+                        </button>
+                        <button type="submit" class="btn-moderno">
+                            <i class="fas fa-paper-plane"></i> Verificar
+                        </button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="tela-servicos" class="tela">
+                <h2><i class="fas fa-hand-sparkles"></i> 1. Escolha o Serviço</h2>
+                <div id="cards-servicos-container"></div>
+                 <div class="actions-container">
+                    <button id="btn-voltar-para-inicial-2" class="btn-moderno btn-secundario">
+                        <i class="fas fa-arrow-left"></i> Voltar
+                    </button>
+                </div>
+            </section>
+
+            <section id="tela-barbeiros" class="tela">
+                <h2><i class="fas fa-user-tie"></i> 2. Escolha o Barbeiro</h2>
+                <label for="barbeiro">Barbeiro disponível:</label>
+                <select id="barbeiro"></select>
+                <div class="actions-container">
+                    <button id="btn-voltar-para-servicos" class="btn-moderno btn-secundario"><i class="fas fa-arrow-left"></i> Voltar</button>
+                    <button id="btn-avancar-para-data" class="btn-moderno">Avançar <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <section id="tela-data-hora" class="tela">
+                <h2><i class="fas fa-calendar-alt"></i> 3. Escolha a Data e Hora</h2>
+                <label for="data">Data:</label>
+                <input type="date" id="data" name="data">
+                <label for="horarios-disponiveis" style="margin-top:15px;">Horários disponíveis:</label>
+                <div id="horarios-disponiveis"></div>
+                <div class="actions-container">
+                    <button id="btn-voltar-para-barbeiros" class="btn-moderno btn-secundario"><i class="fas fa-arrow-left"></i> Voltar</button>
+                    <button id="btn-avancar-para-dados" class="btn-moderno">Avançar <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </section>
+
+            <section id="tela-dados-cliente" class="tela">
+                <h2><i class="fas fa-user-edit"></i> 4. Seus Dados</h2>
+                <form id="form-agendamento">
+                    <div>
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Digite seu nome">
+                    </div>
+                    <div>
+                        <label for="telefone">Telefone (WhatsApp):</label>
+                        <input type="tel" id="telefone" name="telefone" required placeholder="(XX) XXXXX-XXXX">
+                    </div>
+                    <div class="actions-container">
+                        <button id="btn-voltar-para-data-hora" type="button" class="btn-moderno btn-secundario"><i class="fas fa-arrow-left"></i> Voltar</button>
+                        <button type="submit" class="btn-moderno btn-confirmar" style="flex-grow: 1;"><i class="fas fa-check-circle"></i> Enviar Pedido</button>
+                    </div>
+                </form>
+            </section>
+
+            <section id="tela-pedido-enviado" class="tela status-screen">
+                <i class="fas fa-paper-plane status-icon"></i>
+                <h2>Pedido Enviado</h2>
+                <p>A sua solicitação está a ser analisada pela barbearia. Estamos a verificar o status para si...</p>
+                <div class="spinner"></div>
+                <p class="status-info-subtle">Pode fechar esta página e consultar o status depois usando o seu número de telefone.</p>
+                <div class="actions-container">
+                    <button id="btn-inicio-pedido-enviado" class="btn-moderno btn-secundario"><i class="fas fa-home"></i> Voltar ao Início</button>
+                </div>
+            </section>
+
+            <section id="tela-agendamento-confirmado" class="tela status-screen">
+                <i class="fas fa-check-circle status-icon success"></i>
+                <h2>Agendamento Confirmado!</h2>
+                <div id="resumo-agendamento-confirmado" class="resumo-agendamento"></div>
+                <p>O seu horário está garantido. Aguardamos por si!</p>
+                <div class="actions-container">
+                    <button id="btn-inicio-ag-confirmado" class="btn-moderno btn-secundario"><i class="fas fa-home"></i> Voltar ao Início</button>
+                </div>
+            </section>
+            
+            <section id="tela-agendamento-recusado" class="tela status-screen">
+                <i class="fas fa-times-circle status-icon error"></i>
+                <h2>Agendamento Recusado</h2>
+                <p>Infelizmente, não foi possível confirmar o seu pedido de agendamento. Veja os detalhes abaixo:</p>
+                <div id="resumo-agendamento-recusado" class="resumo-agendamento"></div>
+                <p class="status-info-subtle">Por favor, tente um novo horário ou entre em contato connosco.</p>
+                <div class="actions-container">
+                     <button id="btn-inicio-ag-recusado" class="btn-moderno"><i class="fas fa-calendar-plus"></i> Tentar Novo Agendamento</button>
+                </div>
+            </section>
+
+            <section id="tela-reagendamento-proposto" class="tela status-screen">
+                <i class="fas fa-sync-alt status-icon warning"></i>
+                <h2>Sugestão de Novo Horário</h2>
+                <p>A barbearia não pôde confirmar o seu horário original, mas sugere uma nova data/hora:</p>
+                <div id="resumo-reagendamento-proposto" class="resumo-agendamento">
+                    </div>
+                <p>Você aceita a nova sugestão?</p>
+                <div class="actions-container">
+                    <button id="btn-recusar-sugestao" class="btn-moderno btn-secundario"><i class="fas fa-times"></i> Recusar</button>
+                    <button id="btn-aceitar-sugestao" class="btn-moderno btn-confirmar"><i class="fas fa-check"></i> Aceitar Novo Horário</button>
+                </div>
+            </section>
+
+            <section id="tela-reagendamento-recusado" class="tela status-screen">
+                <i class="fas fa-comment-dots status-icon"></i>
+                <h2>Sugestão Recusada</h2>
+                <p>Entendido. A sua recusa foi registada.</p>
+                <p>Para encontrar um novo horário que funcione para si, por favor, entre em contacto connosco diretamente. Teremos todo o gosto em ajudá-lo!</p>
+                <div class="social-links">
+                    <a href="https://wa.me/5511999999999" target="_blank" class="btn-moderno btn-social whatsapp">
+                        <i class="fab fa-whatsapp"></i> Conversar no WhatsApp
+                    </a>
+                    <a href="https://instagram.com/suabarbearia" target="_blank" class="btn-moderno btn-social instagram">
+                        <i class="fab fa-instagram"></i> Seguir no Instagram
+                    </a>
+                </div>
+                <div class="actions-container" style="margin-top: 30px;">
+                    <button id="btn-inicio-recusa-feita" class="btn-moderno btn-secundario"><i class="fas fa-home"></i> Voltar ao Início</button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app_cliente.js"></script>
+
+    <div id="modal-alerta" class="modal-overlay-cliente">
+        <div class="modal-conteudo-cliente">
+            <h3 id="modal-alerta-titulo">Atenção</h3>
+            <p id="modal-alerta-mensagem"></p>
+            <div class="actions-container">
+                <button id="modal-alerta-fechar" class="btn-moderno" style="width: 100%;">OK</button>
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
